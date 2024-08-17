@@ -1,0 +1,1 @@
+root://fndca1.fnal.gov:1094///pnfs/fnal.gov/usr/minerva/persistent/users/omorenop/MC/Merged/Lattice/DSCal/MAD-me6J-Tracker-June2024/120591/MasterAnaDev_mc_AnaTuple_run00120591_Playlist.root

@@ -1,0 +1,5 @@
+root://fndca1.fnal.gov:1094/pnfs/fnal.gov/usr/minerva/persistent/users/minervapro/MasterAnaDev/minervame6Apass1/MasterAnaDev_mc_AnaTuple_run00122055.root
+root://fndca1.fnal.gov:1094/pnfs/fnal.gov/usr/minerva/persistent/users/minervapro/MasterAnaDev/minervame6Apass1/MasterAnaDev_mc_AnaTuple_run00122056.root
+root://fndca1.fnal.gov:1094/pnfs/fnal.gov/usr/minerva/persistent/users/minervapro/MasterAnaDev/minervame6Apass1/MasterAnaDev_mc_AnaTuple_run00122057.root
+root://fndca1.fnal.gov:1094/pnfs/fnal.gov/usr/minerva/persistent/users/minervapro/MasterAnaDev/minervame6Apass1/MasterAnaDev_mc_AnaTuple_run00122058.root
+root://fndca1.fnal.gov:1094/pnfs/fnal.gov/usr/minerva/persistent/users/minervapro/MasterAnaDev/minervame6Apass1/MasterAnaDev_mc_AnaTuple_run00122059.root
