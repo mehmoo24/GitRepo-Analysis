@@ -49,14 +49,16 @@ void FillVariable( PlotUtils::ChainWrapper* chain, HelicityType::t_HelicityType 
   Var* enu = new Var("Enu", "Enu (GeV)", Enubin, &CVUniverse::GetEnuGeV, &CVUniverse::GetEnuTrueGeV);
   // be careful! Put in reco func for truth as well below!!!
   Var* gamma1_E = new Var("gamma1_E", "gamma1_E (GeV)", gamma_E, &CVUniverse::GetGamma1E_GeV, &CVUniverse::GetGamma1E_GeV); // be careful! Put in reco func for truth as well!!!
+  Var* gamma1_E_comp = new Var("gamma1_E_comp", "gamma1_E_comp (GeV)", gamma_E, &CVUniverse::GetGamma1E_computed_GeV, &CVUniverse::GetGamma1E_computed_GeV);
+  Var* gamma2_E_comp = new Var("gamma2_E_comp", "gamma2_E_comp (GeV)", gamma_E, &CVUniverse::GetGamma2E_computed_GeV, &CVUniverse::GetGamma2E_computed_GeV);
+
   Var* gamma2_E = new Var("gamma2_E", "gamma2_E (GeV)", gamma_E, &CVUniverse::GetGamma2E_GeV, &CVUniverse::GetGamma2E_GeV); // be careful! Put in reco func for truth as well!!!
   Var* gamma1_phi = new Var("gamma1_phi", "gamma1_phi (rad)", gamma_phi, &CVUniverse::GetGamma1phi_radIthink, &CVUniverse::GetGamma1phi_radIthink);
   Var* gamma2_phi = new Var("gamma2_phi", "gamma2_phi (rad)", gamma_phi, &CVUniverse::GetGamma2phi_radIthink, &CVUniverse::GetGamma2phi_radIthink);
   Var* gamma1_dEdx = new Var("gamma1_dEdx", "gamma1_dEdx (GeV/cm)", gamma_dEdx, &CVUniverse::GetGamma1dEdx_GeVcm, &CVUniverse::GetGamma1dEdx_GeVcm);
   Var* gamma2_dEdx = new Var("gamma2_dEdx", "gamma2_dEdx (GeV/cm)", gamma_dEdx, &CVUniverse::GetGamma2dEdx_GeVcm, &CVUniverse::GetGamma2dEdx_GeVcm);
 
-
-  variables = {gamma1_E, gamma2_E, gamma1_phi, gamma2_phi, gamma1_dEdx, gamma2_dEdx};
+  variables = {gamma1_E, gamma2_E, gamma1_E_comp, gamma2_E_comp, gamma1_phi, gamma2_phi, gamma1_dEdx, gamma2_dEdx};
   
 
   for (auto v : variables) v->InitializeAllHistograms(error_bands);
@@ -71,6 +73,8 @@ void FillVariable( PlotUtils::ChainWrapper* chain, HelicityType::t_HelicityType 
             for (auto universe : error_band_universes){
 		    universe->SetEntry(i);
 		   // if ((universe->GetInt("has_interaction_vertex") != 1)) continue;
+                    if (!(universe->GetDouble("gamma1_E")>0 && universe->GetDouble("gamma2_E")>0)) continue;
+		    if (!((universe->GetDouble("gamma1_E")+universe->GetDouble("gamma2_E") > 400.) || (universe->GetDouble("pi0_openingAngle") > 20))) continue;
 		    for (auto v : variables){
 			    v->m_selected_mc_reco.univHist(universe)->Fill(v->GetRecoValue(*universe), universe->GetWeight());
 		    } // end variables for loop
