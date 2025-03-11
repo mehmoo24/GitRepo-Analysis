@@ -86,6 +86,8 @@ void FillVariable( PlotUtils::ChainWrapper* chain, HelicityType::t_HelicityType 
 
         dataverse->SetEntry(i);
 	//if ((dataverse->GetInt("has_interaction_vertex") != 1)) continue;
+        if (!(dataverse->GetDouble("gamma1_E")>0 && dataverse->GetDouble("gamma2_E")>0)) continue;
+        if (!((dataverse->GetDouble("gamma1_E")+dataverse->GetDouble("gamma2_E") > 400.) || (dataverse->GetDouble("pi0_openingAngle") > 20))) continue;
 	for (auto v : variables){
                 v->m_selected_data_reco.hist->Fill(v->GetRecoValue(*dataverse));
         } // end variables for loop
